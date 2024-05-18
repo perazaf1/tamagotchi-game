@@ -1,4 +1,4 @@
-#Tamagotchi Game
+### Tamagotchi Game
 
 Bienvenue dans le jeu Tamagotchi ! Il s'agit d'un jeu d'animaux virtuels dans lequel tu dois prendre soin de ton Tamagotchi en gérant sa satisfaction, sa santé, son ennui et ses besoins. Le jeu comprend une boutique pour acheter des objets, jouer à des mini-jeux et veiller au bien-être de ton animal.
 
