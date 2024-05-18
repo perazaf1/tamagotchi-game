@@ -7,10 +7,10 @@ Bienvenue dans le jeu Tamagotchi ! Il s'agit d'un jeu d'animaux virtuels dans le
 - [Installation](#installation)
 - [Gameplay](#gameplay)
 - [Images](#images)
-- [Caractéristiques](#features)
-- [Comment jouer](#how-to-play)
-- [Librairies et dépendances](#dependencies)
-- [Contribution](#contributing)
+- [Caractéristiques](#caractéristiques)
+- [Comment jouer](#jouer)
+- [Librairies et dépendances](#dépendances)
+- [Contribution](#contributiion)
 - [License](#license)
 
 ## Installation
@@ -42,7 +42,7 @@ Le jeu commence dans un menu principal où vous pouvez choisir de commencer une 
 - Boutique : Achetez des objets pour améliorer la vie de votre Tamagotchi.
 - Sauvegarde et chargement : Sauvegardez votre progression et reprenez là où vous vous êtes arrêté.
 
-## Comment jouer 
+## Jouer 
 
 1. Lancer le jeu : Exécutez le fichier main.py pour lancer le jeu.
 2. Menu principal : Choisissez de commencer une nouvelle partie ou de reprendre une partie sauvegardée.
@@ -51,7 +51,7 @@ Le jeu commence dans un menu principal où vous pouvez choisir de commencer une 
 5. Mini-jeux et boutique : Jouez à des mini-jeux pour gagner des pièces et achetez des objets dans la boutique.
 6. Sauvegarde automatique : Votre progression est automatiquement sauvegardée lorsque vous quittez le jeu.
 
-## Dépendances et librairies à installer
+## Dépendances
 
 Le jeu utilise les bibliothèques suivantes :
 pygame : pour les graphismes, les sons et les interactions du jeu.
