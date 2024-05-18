@@ -29,9 +29,10 @@ Assurez-vous que Python 3.x et Pygame sont installés.
 Le jeu commence dans un menu principal où vous pouvez choisir de commencer une nouvelle partie ou de reprendre une partie sauvegardée. Vous devez maintenir les indicateurs de votre Tamagotchi (satisfaction, santé, ennui et besoins) au-dessus de zéro pour continuer à jouer. Si l'un de ces indicateurs atteint zéro, c'est le game over.
 
 ## Quelques Images
-[Menu d'accueil]('samples\preview1.png')
-[Lobby]('samples\preview2.png')
-[Magasin]('samples\preview2.png')
+- Menu d'accueil <img align="left" alt="Accueil" src = "https://cdn.discordapp.com/attachments/782529104502587404/1241412902624301056/preview1.png?ex=664a1b5c&is=6648c9dc&hm=64823d93f39b903e22dca1263481963ba2ecf3b490358bc04d43e24141087849&">
+- Lobby <img align="left" alt="Lobby" src = "https://cdn.discordapp.com/attachments/782529104502587404/1241412902976618650/preview2.png?ex=664a1b5c&is=6648c9dc&hm=6e8f2a5910ba025127d0457de16c398438117ee9211cb1471306de5901e53e96&">
+- Magasin <img align="left" alt="Magasin" src = "https://cdn.discordapp.com/attachments/782529104502587404/1241412902372774050/preview3.png?ex=664a1b5c&is=6648c9dc&hm=a11f56877f5ffae8f96f847a919c3a7c8fc6c20de03b4ed0550d19fd51c38e78&">
+
 
 
 ## Caractéristiques
