@@ -1,4 +1,4 @@
-### Tamagotchi Game
+# Tamagotchi Game
 
 Bienvenue dans le jeu Tamagotchi ! Il s'agit d'un jeu d'animaux virtuels dans lequel tu dois prendre soin de ton Tamagotchi en gérant sa satisfaction, sa santé, son ennui et ses besoins. Le jeu comprend une boutique pour acheter des objets, jouer à des mini-jeux et veiller au bien-être de ton animal.
 
@@ -6,6 +6,7 @@ Bienvenue dans le jeu Tamagotchi ! Il s'agit d'un jeu d'animaux virtuels dans le
 
 - [Installation](#installation)
 - [Gameplay](#gameplay)
+- [Images](#images)
 - [Caractéristiques](#features)
 - [Comment jouer](#how-to-play)
 - [Librairies et dépendances](#dependencies)
@@ -26,6 +27,12 @@ Assurez-vous que Python 3.x et Pygame sont installés.
 
 ## Gameplay
 Le jeu commence dans un menu principal où vous pouvez choisir de commencer une nouvelle partie ou de reprendre une partie sauvegardée. Vous devez maintenir les indicateurs de votre Tamagotchi (satisfaction, santé, ennui et besoins) au-dessus de zéro pour continuer à jouer. Si l'un de ces indicateurs atteint zéro, c'est le game over.
+
+## Quelques Images
+[Menu d'accueil]('samples\preview1.png')
+[Lobby]('samples\preview2.png')
+[Magasin]('samples\preview2.png')
+
 
 ## Caractéristiques
 - Gestion des besoins : Gardez votre Tamagotchi heureux et en bonne santé en surveillant ses besoins.
