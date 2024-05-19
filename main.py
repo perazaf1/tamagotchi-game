@@ -394,11 +394,11 @@ def menu():
         clock.tick(FPS)
         pygame.display.update()
 
-        # if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
-        # # Save game data on quit
-        #     save_game(action)
-        #     endGame = True
-        #     pygame.quit()
-        
+        if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
+        # Save game data on quit
+            save_game(action)
+            endGame = True
+            pygame.quit()
+
 if __name__ == '__main__':       
     menu()

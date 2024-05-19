@@ -29,9 +29,9 @@ Assurez-vous que Python 3.x et Pygame sont installés.
 Le jeu commence dans un menu principal où vous pouvez choisir de commencer une nouvelle partie ou de reprendre une partie sauvegardée. Vous devez maintenir les indicateurs de votre Tamagotchi (satisfaction, santé, ennui et besoins) au-dessus de zéro pour continuer à jouer. Si l'un de ces indicateurs atteint zéro, c'est le game over.
 
 ## Quelques Images
-- Menu d'accueil <img align="center" height = "250px" width = "400px" alt="Accueil" src = "https://cdn.discordapp.com/attachments/782529104502587404/1241412902624301056/preview1.png?ex=664a1b5c&is=6648c9dc&hm=64823d93f39b903e22dca1263481963ba2ecf3b490358bc04d43e24141087849&">
-- Lobby <img align="center" height = "250px" width = "400px" alt="Lobby" src = "https://cdn.discordapp.com/attachments/782529104502587404/1241412902976618650/preview2.png?ex=664a1b5c&is=6648c9dc&hm=6e8f2a5910ba025127d0457de16c398438117ee9211cb1471306de5901e53e96&">
-- Magasin <img align="center" height = "250px" width = "400px" alt="Magasin" src = "https://cdn.discordapp.com/attachments/782529104502587404/1241412902372774050/preview3.png?ex=664a1b5c&is=6648c9dc&hm=a11f56877f5ffae8f96f847a919c3a7c8fc6c20de03b4ed0550d19fd51c38e78&">
+- Menu d'accueil <img align="center" height = "250px" width = "400px" alt="Accueil" src = "https://github.com/perazaf1/tamagotchi-game/assets/80415605/e1488508-07f3-494e-acd6-5b76ee3f26da">
+- Lobby <img align="center" height = "250px" width = "400px" alt="Lobby" src = "https://github.com/perazaf1/tamagotchi-game/assets/80415605/af938607-1de6-4da8-8e10-45612c8eb5aa">
+- Magasin <img align="center" height = "250px" width = "400px" alt="Magasin" src = "https://github.com/perazaf1/tamagotchi-game/assets/80415605/8d12e282-dbc5-4ccb-8ae3-08ac6111b632">
 
 
 
