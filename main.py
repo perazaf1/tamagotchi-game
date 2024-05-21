@@ -12,7 +12,6 @@ from mainConst import action, tamagotchiJump, pixel_font
 from abs_path import abs_path
 from save_load import save_game, load_game, save_file
 
-
 pygame.init()
 pygame.time.set_timer(pygame.USEREVENT, 2000)
 day = 90000
@@ -127,6 +126,7 @@ dollar_label = Button(70, 60, 100, 100, abs_path('images/sprites/dollar.png'))
 start_btn = Button(140, 150, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Commencer')
 rule_btn = Button(140, 250, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Aide')
 exit_btn = Button(140, 350, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Fin')
+# restart_btn = Button(140, 450, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Recommencer')
 
 
 info_satisfaction = Button(20, 30, 25, 50, abs_path('images/sprites/lightning.png'))
@@ -136,6 +136,7 @@ info_health = Button(30, 90, 60, 60, abs_path('images/sprites/health.png'))
 
 btn_statistic = Button(715, 40, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Statistiques')
 btn_shop = Button(500,40,150,50, abs_path('images/sprites/buttonLong_brown.png'),'Magasin')
+btn_rules = Button(140, 50, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Règles')
 
 btn_satisfaction = Button(85, 467, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Nourrir')
 btn_toilet = Button(285, 467, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Toilettes')
@@ -174,6 +175,7 @@ def game():
     pygame.mixer.music.play(loops=-1)
 
     while not endGame:
+        
         screen.blit(background, (0, 0))
         info_satisfaction.blit_btn()
         satisfaction_text = pixel_font.render(str(action['satisfaction']), False, (255, 255, 255))
@@ -191,6 +193,7 @@ def game():
 
         tamagotchiAnimation(330, 340)
         btn_shop.blit_btn()
+        
         btn_statistic.blit_btn()
         statistics = statisticsClass.Statistics(400, 250, 750, 450, abs_path('images/sprites/panel_brown.png'),
                                                 str(action['dollars']) + ' $', 'Nom: Tamagotchi', f'Jours: {daysCount}')
@@ -204,6 +207,7 @@ def game():
         tamagotchiAnimation(330, 340)
         shop.draw_purchased_items(330, 340)
 
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
                 save_game(action)
@@ -216,7 +220,10 @@ def game():
                     daysCount += 1
             if event.type == daysEvent:
                 isSleep = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                pos_x, pos_y = pygame.mouse.get_pos()
             if not isSleep:
+
                 if btn_statistic.rect.collidepoint((pos_x, pos_y)) and event.type == pygame.MOUSEBUTTONDOWN:
                     statisticsClass.clicked_statistics = True
                     button_sound.play()
@@ -235,6 +242,7 @@ def game():
                     pygame.mixer.music.load(abs_path('sounds/game.ogg'))
                     pygame.mixer.music.set_volume(0.7)
                     pygame.mixer.music.play()
+                    btn_rules.blit_btn()
                 if event.type == pygame.USEREVENT:
                     if playClass.clicked_play:
                         spawn_coin(coins)
@@ -243,6 +251,8 @@ def game():
                 if btn_shop.rect.collidepoint((pos_x,pos_y)) and event.type == pygame.MOUSEBUTTONDOWN:
                     shopClass.clicked_shop = True
                     button_sound.play()
+                if action['dollars'] >= 0:
+                    shop.pressed(pos_x, pos_y, event)
                 if shopClass.clicked_shop:
                     shop.bilt_shop_menu()
                     shop.hover(pos_x, pos_y)
@@ -329,6 +339,7 @@ def game():
         pygame.display.update()
 
 
+
 def menu():
     global endMenu, animCount, start_time
     pygame.mixer.music.load(abs_path('sounds/menu.ogg'))
@@ -384,6 +395,7 @@ def menu():
         start_btn.hover(pos_x, pos_y)
         rule_btn.hover(pos_x, pos_y)
         exit_btn.hover(pos_x, pos_y)
+
 
         if panelClass.clicked_help:
             help_menu.blit_panel()

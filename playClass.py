@@ -105,3 +105,4 @@ class Coin(pygame.sprite.Sprite):
             self.rect.y += self.speed
         else:
             self.kill()
+
