@@ -5,12 +5,13 @@ import pygame
 import foodClass
 import panelClass
 import shopClass
+
 import playClass
 import statisticsClass
 from buttonClass import Button
-from mainConst import action, tamagotchiJump, pixel_font
+from mainConst import action, tamagotchiJump, pixel_font, tamagotchiJump2, tamagotchiJump3
 from abs_path import abs_path
-from save_load import save_game, load_game, save_file
+from save_load import save_game, load_game, save_file, delete_game
 
 pygame.init()
 pygame.time.set_timer(pygame.USEREVENT, 2000)
@@ -19,8 +20,8 @@ daysCount = 0
 daysEvent = pygame.USEREVENT + 1
 pygame.time.set_timer(daysEvent, day)
 
-screen_width = 800
-screen_height = 500
+screen_width = 1080
+screen_height = 720
 FPS = 45
 timeout = 15
 animCount = 0
@@ -41,8 +42,7 @@ game_time = None
 
 cursor = pygame.image.load(abs_path('images/sprites/cursorHand_blue.png'))
 pygame.mouse.set_visible(False)
-# background_menu = [pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/gifMenu-0.png')), (screen_width, screen_height)),
-#                    pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/gifMenu-1.png')), (screen_width, screen_height))]
+
 
 background_menu = [pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/gif-menu.jpg')),(screen_width,screen_height))]
 background = pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/waterfall.png')), (screen_width, screen_height))
@@ -56,14 +56,43 @@ gameover_text = pixel_font.render('SI vous voulez jouer vous devez relancer le j
 def tamagotchiAnimation(x, y):
     global animCount
     if not isSleep:
-        if animCount + 1 >= len(tamagotchiJump) * 6:
+        if animCount + 1 >= len(tamagotchiJump) * 9:
             animCount = 0
             screen.blit(tamagotchiJump[0], (x, y))
         else:
-            screen.blit(tamagotchiJump[animCount // 6], (x, y))
+            screen.blit(tamagotchiJump[animCount // 9], (x, y))
             animCount += 1
 
-        screen.blit(day_image, (735, 70))
+        screen.blit(day_image, (945, 180))
+    else:
+        screen.blit(tamagotchiJump[0], (x, y))
+
+
+def tamagotchiAnimation2(x, y):
+    global animCount
+    if not isSleep:
+        if animCount + 1 >= len(tamagotchiJump2) * 9:
+            animCount = 0
+            screen.blit(tamagotchiJump2[0], (x, y))
+        else:
+            screen.blit(tamagotchiJump2[animCount // 9], (x, y))
+            animCount += 1
+
+        screen.blit(day_image, (945, 180))
+    else:
+        screen.blit(tamagotchiJump[0], (x, y))
+
+def tamagotchiAnimation3(x, y):
+    global animCount
+    if not isSleep:
+        if animCount + 1 >= len(tamagotchiJump3) * 9:
+            animCount = 0
+            screen.blit(tamagotchiJump3[0], (x, y))
+        else:
+            screen.blit(tamagotchiJump3[animCount // 9], (x, y))
+            animCount += 1
+
+        screen.blit(day_image, (945, 180))
     else:
         screen.blit(tamagotchiJump[0], (x, y))
 
@@ -119,38 +148,38 @@ def spawn_coin(group):
 
 coins = pygame.sprite.Group()
 
-help_menu = panelClass.Panel(400, 250, 750, 450, abs_path('images/sprites/panel_brown.png'), ' Vous devez garder les indicateurs normaux.',
+help_menu = panelClass.Panel(560, 350, 750, 450, abs_path('images/sprites/panel_brown.png'), ' Vous devez garder les indicateurs normaux.',
                              'Si un seul des indicateurs est nul, vous perdez...', 'Bonne chance !')
 
 dollar_label = Button(70, 60, 100, 100, abs_path('images/sprites/dollar.png'))
-start_btn = Button(140, 150, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Commencer')
-rule_btn = Button(140, 250, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Aide')
-exit_btn = Button(140, 350, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Fin')
-# restart_btn = Button(140, 450, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Recommencer')
+start_btn = Button(240, 250, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Commencer')
+rule_btn = Button(240, 350, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Aide')
+exit_btn = Button(240, 450, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Fin')
 
 
-info_satisfaction = Button(20, 30, 25, 50, abs_path('images/sprites/lightning.png'))
-info_toilet = Button(150, 30, 50, 50, abs_path('images/sprites/toilet.png'))
-info_boredom = Button(270, 30, 50, 50, abs_path('images/sprites/smile.png'))
-info_health = Button(30, 90, 60, 60, abs_path('images/sprites/health.png'))
 
-btn_statistic = Button(715, 40, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Statistiques')
-btn_shop = Button(500,40,150,50, abs_path('images/sprites/buttonLong_brown.png'),'Magasin')
+info_satisfaction = Button(420, 50, 50, 50, abs_path('images/sprites/lightning.png'))
+info_toilet = Button(190, 50, 50, 50, abs_path('images/sprites/toilet.png'))
+info_boredom = Button(320, 50, 50, 50, abs_path('images/sprites/smile.png'))
+info_health = Button(70, 50, 60, 60, abs_path('images/sprites/health.png'))
+
+btn_statistic = Button(915, 40, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Statistiques')
+btn_shop = Button(750,40,150,50, abs_path('images/sprites/buttonLong_brown.png'),'Magasin')
 btn_rules = Button(140, 50, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Règles')
 
-btn_satisfaction = Button(85, 467, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Nourrir')
-btn_toilet = Button(285, 467, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Toilettes')
-btn_play = Button(515, 467, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Jouer')
-btn_health = Button(715, 467, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Soigner')
+btn_satisfaction = Button(185, 680, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Nourrir')
+btn_toilet = Button(400, 680, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Toilettes')
+btn_play = Button(715, 680, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Jouer')
+btn_health = Button(915, 680, 150, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Soigner')
 
 
 
-shop = shopClass.ShopMenu(400,250,750,450,abs_path('images/sprites/panel_brown.png'),
+shop = shopClass.ShopMenu(560,350,750,450,abs_path('images/sprites/panel_brown.png'),
                           abs_path('images/sprites/buttonSquare_beige_pressed.png'),
                           abs_path('images/sprites/shop_1.png'),abs_path('images/sprites/shop_2.png'),abs_path('images/sprites/shop_3.png'))
 
 
-food = foodClass.FoodMenu(400, 250, 750, 450, abs_path('images/sprites/panel_brown.png'),
+food = foodClass.FoodMenu(560, 350, 750, 450, abs_path('images/sprites/panel_brown.png'),
                           abs_path('images/sprites/buttonSquare_beige_pressed.png'),
                           abs_path('images/sprites/food_1.png'), abs_path('images/sprites/food_2.png'), abs_path('images/sprites/food_3.png'))
 
@@ -179,19 +208,19 @@ def game():
         screen.blit(background, (0, 0))
         info_satisfaction.blit_btn()
         satisfaction_text = pixel_font.render(str(action['satisfaction']), False, (255, 255, 255))
-        screen.blit(satisfaction_text, (40, 15))
+        screen.blit(satisfaction_text, (350, 30))
         info_toilet.blit_btn()
         toilet_text = pixel_font.render(str(action['toilet']), False, (255, 255, 255))
-        screen.blit(toilet_text, (180, 15))
+        screen.blit(toilet_text, (220, 30))
         info_boredom.blit_btn()
         smile_text = pixel_font.render(str(action['boredom']), False, (255, 255, 255))
-        screen.blit(smile_text, (300, 15))
+        screen.blit(smile_text, (450, 30))
         health_text = pixel_font.render(str(action['health']), False, (255, 255, 255))
-        screen.blit(health_text, (70, 75))
+        screen.blit(health_text, (100, 30))
         info_health.blit_btn()
 
 
-        tamagotchiAnimation(330, 340)
+        
         btn_shop.blit_btn()
         
         btn_statistic.blit_btn()
@@ -203,8 +232,9 @@ def game():
         btn_health.blit_btn()
 
         pos_x, pos_y = pygame.mouse.get_pos()
-
-        tamagotchiAnimation(330, 340)
+        tamagotchiAnimation(630, 500)    
+        tamagotchiAnimation2(430, 500)
+        tamagotchiAnimation3(230, 500)
         shop.draw_purchased_items(330, 340)
 
 
@@ -285,7 +315,7 @@ def game():
 
         if isSleep:
             screen.blit(night_image, (735, 70))
-            screen.blit(sleep_image, (430, 350))
+            screen.blit(sleep_image, (735, 70))
             if night_timer > 700:
                 isSleep = False
                 night_timer = 0
@@ -294,7 +324,7 @@ def game():
 
         if cantClear:
             text = pixel_font.render('Pas maintenant...', True, (255, 255, 255))
-            screen.blit(text, (230, 400))
+            screen.blit(text, (310, 600))
             if text_timer > 75:
                 cantClear = False
                 text_timer = 0
@@ -302,7 +332,7 @@ def game():
 
         if cantHelp:
             text = pixel_font.render('Pas maintenant...', True, (255, 255, 255))
-            screen.blit(text, (660, 400))
+            screen.blit(text, (810, 600))
             if text_timer > 75:
                 cantHelp = False
                 text_timer = 0
@@ -345,11 +375,7 @@ def menu():
     pygame.mixer.music.load(abs_path('sounds/menu.ogg'))
     pygame.mixer.music.play(loops=-1)
 
-    save_exists = os.path.exists(save_file)
-    if save_exists :
-        resume_btn = Button(140, 50, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Reprendre')
-
-
+   
     while not endMenu:
         if animCount + 1 >= len(background_menu) * 9:
             animCount = 0
@@ -357,20 +383,31 @@ def menu():
         else:
             screen.blit(background_menu[animCount // 9], (0, 0))
             animCount += 1
+        save_exists = os.path.exists(save_file)
+        if save_exists :
+            resume_btn = Button(240, 550, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Reprendre')
+            restart_btn = Button(240, 250, 200, 50, abs_path('images/sprites/buttonLong_brown.png'), 'Recommencer')
+            resume_btn.blit_btn()
+            restart_btn.blit_btn()
+        else:
+            start_btn.blit_btn()
 
         dollar_label.blit_btn()
-        start_btn.blit_btn()
         rule_btn.blit_btn()
         exit_btn.blit_btn()
-
-        if save_exists:
-            resume_btn.blit_btn()
-
+            
         pos_x, pos_y = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
                 endMenu = True
                 pygame.quit()
+            if save_exists and restart_btn.rect.collidepoint((pos_x, pos_y)) and event.type == pygame.MOUSEBUTTONDOWN:
+                button_sound.play()
+                endMenu = True
+                delete_game()
+                game()
+            else:
+                print("Conditions not met")
             if start_btn.rect.collidepoint((pos_x, pos_y)) and event.type == pygame.MOUSEBUTTONDOWN:
                 button_sound.play()
                 endMenu = True
@@ -390,8 +427,8 @@ def menu():
                 button_sound.play()
                 endMenu = True
                 game()
+            
     
-
         start_btn.hover(pos_x, pos_y)
         rule_btn.hover(pos_x, pos_y)
         exit_btn.hover(pos_x, pos_y)
@@ -407,7 +444,6 @@ def menu():
         pygame.display.update()
 
         if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
-        # Save game data on quit
             save_game(action)
             endGame = True
             pygame.quit()

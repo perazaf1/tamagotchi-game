@@ -5,46 +5,42 @@ from abs_path import abs_path
 
 pygame.init()
 
-animCount = 0
-timeCount = 60
-scoreCount = 0
-seconds = 1
-clicked_play = False
-
+animCount = 0  # Animation counter for tamagotchi animation
+timeCount = 60  # Initial time count for the game timer
+scoreCount = 0  # Initial score count
+seconds = 1  # Timer for seconds
+clicked_play = False  # Boolean to track if the play button is clicked
 
 class Play:
     def __init__(self):
-        self.x = 325
-        self.y = 400
-        self.width = 150
-        self.height = 150
-        self.background = [pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/game.jpg')),(800,500))]
-        # self.background_anim = [pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/background-0.png')), (800, 500)),
-        #                         pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/background-1.png')), (800, 500)),
-        #                         pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/background-2.png')), (800, 500)),
-        #                         pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/background-3.png')), (800, 500))]
+        self.x = 400
+        self.y = 560
+        self.width = 180
+        self.height = 180
+        # Load and scale the background image
+        self.background = [pygame.transform.scale(pygame.image.load(abs_path('images/backgrounds/game.jpg')),(1080,720))]
+        # Load and scale the exit icon
         self.exit = pygame.transform.scale(pygame.image.load(abs_path('images/sprites/iconCross_beige.png')), (40, 40))
         self.exit_rect = self.exit.get_rect(center=(40, 40))
 
     def blit_play(self):
         global animCount
         if clicked_play:
-            # if animCount + 1 >= len(self.background_anim) * 7:
+            # Animation logic
             if animCount + 1 >= len(self.background) * 7:
                 animCount = 0
-                # screen.blit(self.background_anim[0], (0, 0))
                 screen.blit(self.background[0], (0, 0))
                 screen.blit(tamagotchiJump[0], (self.x, self.y))
             else:
-                # screen.blit(self.background_anim[animCount // 7], (0, 0))
                 screen.blit(self.background[animCount // 7], (0, 0))
                 screen.blit(tamagotchiJump[animCount // 7], (self.x, self.y))
                 animCount += 1
 
+        # Render and blit the time and score onto the screen
         time_left = pixel_font.render(f'Temps: {timeCount}', True, (230, 255, 255))
         score = pixel_font.render(f'Score: {scoreCount}', True, (255, 255, 255))
-        screen.blit(score, (600, 20))
-        screen.blit(time_left, (600, 60))
+        screen.blit(score, (900, 70))
+        screen.blit(time_left, (900, 100))
         screen.blit(self.exit, self.exit_rect)
 
     def check_time(self, game_time):
@@ -75,12 +71,12 @@ class Play:
         if keys[pygame.K_RIGHT] and self.x < 800 - self.width:
             self.x += 9
 
-
 class Basket(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.basket = pygame.transform.scale(pygame.image.load(abs_path('images/sprites/basket.png')), (150 // 2, 150 // 3))
-        self.rect = self.basket.get_rect(center=(400, 440))
+        # Load and scale the basket image
+        self.basket = pygame.transform.scale(pygame.image.load(abs_path('images/sprites/basket.png')), (180 // 2, 180 // 3))
+        self.rect = self.basket.get_rect(center=(480, 580))
 
     def blit_basket(self):
         screen.blit(self.basket, self.rect)
@@ -91,10 +87,10 @@ class Basket(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT] and self.rect.x < 690:
             self.rect.x += 9
 
-
 class Coin(pygame.sprite.Sprite):
     def __init__(self, x, speed, filename, group):
         pygame.sprite.Sprite.__init__(self)
+        # Load and scale the coin image
         self.image = pygame.transform.scale(pygame.image.load(filename), (30, 30))
         self.rect = self.image.get_rect(center=(x, 0))
         self.speed = speed
@@ -105,4 +101,3 @@ class Coin(pygame.sprite.Sprite):
             self.rect.y += self.speed
         else:
             self.kill()
-
